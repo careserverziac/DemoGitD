@@ -1,35 +1,51 @@
-﻿@model IEnumerable<GitDemo.Models.Movie>
+﻿
+@model IEnumerable<GitDemo.Models.Movie>
 
 @{
     ViewBag.Title = "Movies List";
 }
 
-<h2>Movies List</h2>
+<!-- Bootstrap Responsive Movies List View -->
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="text-primary">🎬 Movies List</h2>
+        @Html.ActionLink("➕ Create New Movie", "Create", null, new { @class = "btn btn-success" })
+    </div>
 
-<p>
-    @Html.ActionLink("Create New Movie", "Create")
-</p>
+    <div class="table-responsive shadow-sm rounded">
+        <table class="table table-bordered table-hover align-middle mb-0">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col" class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var movie in Model)
+                    {
+                        <tr>
+                            <td>@movie.Id</td>
+                            <td>@movie.Name</td>
+                            <td class="text-center">
+                                @Html.ActionLink("Details", "Details", new { id = movie.Id }, new { @class = "btn btn-sm btn-info me-1" })
+                                @Html.ActionLink("Edit", "Edit", new { id = movie.Id }, new { @class = "btn btn-sm btn-warning me-1" })
+                                @Html.ActionLink("Delete", "Delete", new { id = movie.Id }, new { @class = "btn btn-sm btn-danger" })
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="3" class="text-center text-muted">No movies found.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
 
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var movie in Model)
-        {
-            <tr>
-                <td>@movie.Id</td>
-                <td>@movie.Name</td>
-                <td>
-                    @Html.ActionLink("Details", "Details", new { id = movie.Id }) |
-                    @Html.ActionLink("Edit", "Edit", new { id = movie.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = movie.Id })
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<!-- Option
