@@ -1,0 +1,24 @@
+﻿@model GitDemo.Models.Movie
+
+@{
+    ViewBag.Title = "Edit Movie";
+}
+
+<h2>Edit Movie</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="form-group">
+        <label>Movie Name</label>
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+
+    <button type="submit" class="btn btn-success">Update</button>
+}
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,16 @@
+﻿@model GitDemo.Models.Movie
+
+@{
+    ViewBag.Title = "Movie Details";
+}
+
+<h2>Movie Details</h2>
+
+<div>
+    <strong>Movie ID:</strong> @Model.Id <br />
+    <strong>Name:</strong> @Model.Name
+</div>
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

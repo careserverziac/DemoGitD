@@ -1,0 +1,22 @@
+﻿@model GitDemo.Models.Movie
+
+@{
+    ViewBag.Title = "Create Movie";
+}
+
+<h2>Create Movie</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        <label>Movie Name</label>
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
